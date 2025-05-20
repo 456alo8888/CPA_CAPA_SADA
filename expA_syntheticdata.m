@@ -38,20 +38,20 @@ for u = 1:length(samplesize)
     
     
     
-    data = table2array(tab1); % data là categorical array
+    data = table2array(tab1); % data là continuous values
     fprintf('Data matrix size: %s\n', mat2str(size(data)));
     
     
     % Chạy thuật toán PC
-    fprintf('Running PC algorithm for sample size %d\n', nsamples);
-    tic;
-    [~, stru_PC] = PC_part(data, 1:size(data, 2), maxCset, @PaCoT);   
-    stru_PC = randori(stru_PC);
-    time_PC = toc;
-    fprintf('PC structure size: %s\n', mat2str(size(stru_PC)));
-    cell_PC{u} = [[getRPF_stru(stru_PC, stru_GT), get_SHD(stru_PC, stru_GT)], time_PC];
-    fprintf('PC algorithm completed in %.2f seconds\n', time_PC);
-    fprintf('  PC: %s\n', mat2str(cell_PC{u}));
+    %fprintf('Running PC algorithm for sample size %d\n', nsamples);
+    %tic;
+    %[~, stru_PC] = PC_part(data, 1:size(data, 2), maxCset, @PaCoT);   
+    %stru_PC = randori(stru_PC);
+    %time_PC = toc;
+    %fprintf('PC structure size: %s\n', mat2str(size(stru_PC)));
+    %cell_PC{u} = [[getRPF_stru(stru_PC, stru_GT), get_SHD(stru_PC, stru_GT)], time_PC];
+    %fprintf('PC algorithm completed in %.2f seconds\n', time_PC);
+    %fprintf('  PC: %s\n', mat2str(cell_PC{u}));
     
     % Chạy CPA+PC
     fprintf('Running CPA+PC algorithm for sample size %d\n', nsamples);
@@ -64,9 +64,9 @@ for u = 1:length(samplesize)
     fprintf('CPA+PC algorithm completed in %.2f seconds\n', time_CPA);
     
     % Log kết quả
-    printS = [get_Mean(cell_PC)', get_Mean(cell_CPA)'];
+    %printS = [get_Mean(cell_PC)', get_Mean(cell_CPA)'];
     fprintf('Results for sample size %d:\n', nsamples);
-    fprintf('  PC: %s\n', mat2str(cell_PC{u}));
+    %fprintf('  PC: %s\n', mat2str(cell_PC{u}));
     fprintf('  CPA: %s\n', mat2str(cell_CPA{u}));
-    fprintf('  Summary: %s\n', mat2str(printS));
+    %fprintf('  Summary: %s\n', mat2str(printS));
 end
