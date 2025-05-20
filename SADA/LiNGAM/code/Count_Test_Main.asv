@@ -1,0 +1,367 @@
+function [  ] = Count_Test_Main(  )
+clear all;clc;
+dims=200;
+randseed=10;
+R = zeros(randseed,dims,4);%%%表示randseed个dims*4个矩阵
+B=zeros(dims,4);
+for j=1:randseed
+    j
+    a=zeros(dims,4);
+    for i=2:dims
+        i
+        [kkk,kest,estimate_error,number_connect_edge,true_connection_identified,true_absence_identified,ntruepruned,nsuperfluous]=Main(i,j,2000,2,'A');
+        if true_connection_identified+ntruepruned==0||true_connection_identified+nsuperfluous==0
+            a(i,:)=[estimate_error,0,0,0]';
+        else
+            p=true_connection_identified/(true_connection_identified+ntruepruned);
+            q=true_connection_identified/(true_connection_identified+nsuperfluous);
+            r=2*(p*q)/(p+q);
+            a(i,:)=[estimate_error,p,q,r]';
+        end
+    end
+    R(j,:,:)=a;
+end
+B(:,1)=mean(R(:,:,1)',2);%%%每一行的均值
+B(:,2)=mean(R(:,:,2)',2);
+B(:,3)=mean(R(:,:,3)',2);
+B(:,4)=mean(R(:,:,4)',2);
+xlswrite('aa.xls', B);
+disp('finished');
+
+
+clear all;clc;
+dims=200;
+randseed=10;
+R = zeros(randseed,dims,4);%%%表示randseed个dims*4个矩阵
+B=zeros(dims,4);
+for j=1:randseed
+    j
+    a=zeros(dims,4);
+    for i=2:dims
+        i
+        [kkk,kest,estimate_error,number_connect_edge,true_connection_identified,true_absence_identified,ntruepruned,nsuperfluous]=Main(i,j,5000,2,'A');
+        if true_connection_identified+ntruepruned==0||true_connection_identified+nsuperfluous==0
+            a(i,:)=[estimate_error,0,0,0]';
+        else
+            p=true_connection_identified/(true_connection_identified+ntruepruned);
+            q=true_connection_identified/(true_connection_identified+nsuperfluous);
+            r=2*(p*q)/(p+q);
+            a(i,:)=[estimate_error,p,q,r]';
+        end
+    end
+    R(j,:,:)=a;
+end
+B(:,1)=mean(R(:,:,1)',2);%%%每一行的均值
+B(:,2)=mean(R(:,:,2)',2);
+B(:,3)=mean(R(:,:,3)',2);
+B(:,4)=mean(R(:,:,4)',2);
+xlswrite('bb.xls', B);
+disp('finished');
+
+
+
+clear all;clc;
+dims=200;
+randseed=10;
+R = zeros(randseed,dims,4);%%%表示randseed个dims*4个矩阵
+B=zeros(dims,4);
+for j=1:randseed
+    j
+    a=zeros(dims,4);
+    for i=2:dims
+        i
+        [kkk,kest,estimate_error,number_connect_edge,true_connection_identified,true_absence_identified,ntruepruned,nsuperfluous]=Main(i,j,2000,3,'A');
+        if true_connection_identified+ntruepruned==0||true_connection_identified+nsuperfluous==0
+            a(i,:)=[estimate_error,0,0,0]';
+        else
+            p=true_connection_identified/(true_connection_identified+ntruepruned);
+            q=true_connection_identified/(true_connection_identified+nsuperfluous);
+            r=2*(p*q)/(p+q);
+            a(i,:)=[estimate_error,p,q,r]';
+        end
+    end
+    R(j,:,:)=a;
+end
+B(:,1)=mean(R(:,:,1)',2);%%%每一行的均值
+B(:,2)=mean(R(:,:,2)',2);
+B(:,3)=mean(R(:,:,3)',2);
+B(:,4)=mean(R(:,:,4)',2);
+xlswrite('cc.xls', B);
+disp('finished');
+
+clear all;clc;
+dims=200;
+randseed=10;
+R = zeros(randseed,dims,4);%%%表示randseed个dims*4个矩阵
+B=zeros(dims,4);
+for j=1:randseed
+    j
+    a=zeros(dims,4);
+    for i=2:dims
+        i
+        [kkk,kest,estimate_error,number_connect_edge,true_connection_identified,true_absence_identified,ntruepruned,nsuperfluous]=Main(i,j,5000,3,'A');
+        if true_connection_identified+ntruepruned==0||true_connection_identified+nsuperfluous==0
+            a(i,:)=[estimate_error,0,0,0]';
+        else
+            p=true_connection_identified/(true_connection_identified+ntruepruned);
+            q=true_connection_identified/(true_connection_identified+nsuperfluous);
+            r=2*(p*q)/(p+q);
+            a(i,:)=[estimate_error,p,q,r]';
+        end
+    end
+    R(j,:,:)=a;
+end
+B(:,1)=mean(R(:,:,1)',2);%%%每一行的均值
+B(:,2)=mean(R(:,:,2)',2);
+B(:,3)=mean(R(:,:,3)',2);
+B(:,4)=mean(R(:,:,4)',2);
+xlswrite('dd.xls', B);
+disp('finished');
+
+
+
+%%
+% clear all;clc;
+% dims=200;
+% randseed=10;
+% R = zeros(randseed,dims,4);%%%表示randseed个dims*4个矩阵
+% B=zeros(dims,4);
+% for j=1:randseed
+%     j
+%     a=zeros(dims,4);
+%     for i=2:dims
+%         i
+%         [kkk,kest,estimate_error,number_connect_edge,true_connection_identified,true_absence_identified,ntruepruned,nsuperfluous]=Main(i,j,2000,2,'D');
+%         if true_connection_identified+ntruepruned==0||true_connection_identified+nsuperfluous==0
+%             a(i,:)=[estimate_error,0,0,0]';
+%         else
+%             p=true_connection_identified/(true_connection_identified+ntruepruned);
+%             q=true_connection_identified/(true_connection_identified+nsuperfluous);
+%             r=2*(p*q)/(p+q);
+%             a(i,:)=[estimate_error,p,q,r]';
+%         end
+%     end
+%     R(j,:,:)=a;
+% end
+% B(:,1)=mean(R(:,:,1)',2);%%%每一行的均值
+% B(:,2)=mean(R(:,:,2)',2);
+% B(:,3)=mean(R(:,:,3)',2);
+% B(:,4)=mean(R(:,:,4)',2);
+% xlswrite('e1.xls', B);
+% disp('finished');
+% 
+% 
+% clear all;clc;
+% dims=200;
+% randseed=10;
+% R = zeros(randseed,dims,4);%%%表示randseed个dims*4个矩阵
+% B=zeros(dims,4);
+% for j=1:randseed
+%     j
+%     a=zeros(dims,4);
+%     for i=2:dims
+%         i
+%         [kkk,kest,estimate_error,number_connect_edge,true_connection_identified,true_absence_identified,ntruepruned,nsuperfluous]=Main(i,j,5000,2,'D');
+%         if true_connection_identified+ntruepruned==0||true_connection_identified+nsuperfluous==0
+%             a(i,:)=[estimate_error,0,0,0]';
+%         else
+%             p=true_connection_identified/(true_connection_identified+ntruepruned);
+%             q=true_connection_identified/(true_connection_identified+nsuperfluous);
+%             r=2*(p*q)/(p+q);
+%             a(i,:)=[estimate_error,p,q,r]';
+%         end
+%     end
+%     R(j,:,:)=a;
+% end
+% B(:,1)=mean(R(:,:,1)',2);%%%每一行的均值
+% B(:,2)=mean(R(:,:,2)',2);
+% B(:,3)=mean(R(:,:,3)',2);
+% B(:,4)=mean(R(:,:,4)',2);
+% xlswrite('e2.xls', B);
+% disp('finished');
+% 
+% 
+% 
+% clear all;clc;
+% dims=200;
+% randseed=10;
+% R = zeros(randseed,dims,4);%%%表示randseed个dims*4个矩阵
+% B=zeros(dims,4);
+% for j=1:randseed
+%     j
+%     a=zeros(dims,4);
+%     for i=2:dims
+%         i
+%         [kkk,kest,estimate_error,number_connect_edge,true_connection_identified,true_absence_identified,ntruepruned,nsuperfluous]=Main(i,j,2000,3,'D');
+%         if true_connection_identified+ntruepruned==0||true_connection_identified+nsuperfluous==0
+%             a(i,:)=[estimate_error,0,0,0]';
+%         else
+%             p=true_connection_identified/(true_connection_identified+ntruepruned);
+%             q=true_connection_identified/(true_connection_identified+nsuperfluous);
+%             r=2*(p*q)/(p+q);
+%             a(i,:)=[estimate_error,p,q,r]';
+%         end
+%     end
+%     R(j,:,:)=a;
+% end
+% B(:,1)=mean(R(:,:,1)',2);%%%每一行的均值
+% B(:,2)=mean(R(:,:,2)',2);
+% B(:,3)=mean(R(:,:,3)',2);
+% B(:,4)=mean(R(:,:,4)',2);
+% xlswrite('e3.xls', B);
+% disp('finished');
+% 
+% clear all;clc;
+% dims=200;
+% randseed=10;
+% R = zeros(randseed,dims,4);%%%表示randseed个dims*4个矩阵
+% B=zeros(dims,4);
+% for j=1:randseed
+%     j
+%     a=zeros(dims,4);
+%     for i=2:dims
+%         i
+%         [kkk,kest,estimate_error,number_connect_edge,true_connection_identified,true_absence_identified,ntruepruned,nsuperfluous]=Main(i,j,5000,3,'D');
+%         if true_connection_identified+ntruepruned==0||true_connection_identified+nsuperfluous==0
+%             a(i,:)=[estimate_error,0,0,0]';
+%         else
+%             p=true_connection_identified/(true_connection_identified+ntruepruned);
+%             q=true_connection_identified/(true_connection_identified+nsuperfluous);
+%             r=2*(p*q)/(p+q);
+%             a(i,:)=[estimate_error,p,q,r]';
+%         end
+%     end
+%     R(j,:,:)=a;
+% end
+% B(:,1)=mean(R(:,:,1)',2);%%%每一行的均值
+% B(:,2)=mean(R(:,:,2)',2);
+% B(:,3)=mean(R(:,:,3)',2);
+% B(:,4)=mean(R(:,:,4)',2);
+% xlswrite('e4.xls', B);
+% disp('finished');
+
+
+
+%%
+% clear all;clc;
+% dims=100;
+% randseed=10;
+% R = zeros(randseed,dims,4);%%%表示randseed个dims*4个矩阵
+% B=zeros(dims,4);
+% for j=1:randseed
+%     j
+%     a=zeros(dims,4);
+%     for i=2:dims
+%         i
+%         [kkk,kest,estimate_error,number_connect_edge,true_connection_identified,true_absence_identified,ntruepruned,nsuperfluous]=Main(i,j,2000,2,'F');
+%         if true_connection_identified+ntruepruned==0||true_connection_identified+nsuperfluous==0
+%             a(i,:)=[estimate_error,0,0,0]';
+%         else
+%             p=true_connection_identified/(true_connection_identified+ntruepruned);
+%             q=true_connection_identified/(true_connection_identified+nsuperfluous);
+%             r=2*(p*q)/(p+q);
+%             a(i,:)=[estimate_error,p,q,r]';
+%         end
+%     end
+%     R(j,:,:)=a;
+% end
+% B(:,1)=mean(R(:,:,1)',2);%%%每一行的均值
+% B(:,2)=mean(R(:,:,2)',2);
+% B(:,3)=mean(R(:,:,3)',2);
+% B(:,4)=mean(R(:,:,4)',2);
+% xlswrite('f1.xls', B);
+% disp('finished');
+
+
+clear all;clc;
+dims=100;
+randseed=10;
+R = zeros(randseed,dims,4);%%%表示randseed个dims*4个矩阵
+B=zeros(dims,4);
+for j=1:randseed
+    j
+    a=zeros(dims,4);
+    for i=2:dims
+        i
+        [kkk,kest,estimate_error,number_connect_edge,true_connection_identified,true_absence_identified,ntruepruned,nsuperfluous]=Main(i,j,5000,2,'F');
+        if true_connection_identified+ntruepruned==0||true_connection_identified+nsuperfluous==0
+            a(i,:)=[estimate_error,0,0,0]';
+        else
+            p=true_connection_identified/(true_connection_identified+ntruepruned);
+            q=true_connection_identified/(true_connection_identified+nsuperfluous);
+            r=2*(p*q)/(p+q);
+            a(i,:)=[estimate_error,p,q,r]';
+        end
+    end
+    R(j,:,:)=a;
+end
+B(:,1)=mean(R(:,:,1)',2);%%%每一行的均值
+B(:,2)=mean(R(:,:,2)',2);
+B(:,3)=mean(R(:,:,3)',2);
+B(:,4)=mean(R(:,:,4)',2);
+xlswrite('f2.xls', B);
+disp('finished');
+
+
+
+clear all;clc;
+dims=100;
+randseed=10;
+R = zeros(randseed,dims,4);%%%表示randseed个dims*4个矩阵
+B=zeros(dims,4);
+for j=1:randseed
+    j
+    a=zeros(dims,4);
+    for i=2:dims
+        i
+        [kkk,kest,estimate_error,number_connect_edge,true_connection_identified,true_absence_identified,ntruepruned,nsuperfluous]=Main(i,j,2000,3,'F');
+        if true_connection_identified+ntruepruned==0||true_connection_identified+nsuperfluous==0
+            a(i,:)=[estimate_error,0,0,0]';
+        else
+            p=true_connection_identified/(true_connection_identified+ntruepruned);
+            q=true_connection_identified/(true_connection_identified+nsuperfluous);
+            r=2*(p*q)/(p+q);
+            a(i,:)=[estimate_error,p,q,r]';
+        end
+    end
+    R(j,:,:)=a;
+end
+B(:,1)=mean(R(:,:,1)',2);%%%每一行的均值
+B(:,2)=mean(R(:,:,2)',2);
+B(:,3)=mean(R(:,:,3)',2);
+B(:,4)=mean(R(:,:,4)',2);
+xlswrite('f3.xls', B);
+disp('finished');
+
+clear all;clc;
+dims=100;
+randseed=10;
+R = zeros(randseed,dims,4);%%%表示randseed个dims*4个矩阵
+B=zeros(dims,4);
+for j=1:randseed
+    j
+    a=zeros(dims,4);
+    for i=2:dims
+        i
+        [kkk,kest,estimate_error,number_connect_edge,true_connection_identified,true_absence_identified,ntruepruned,nsuperfluous]=Main(i,j,5000,3,'F');
+        if true_connection_identified+ntruepruned==0||true_connection_identified+nsuperfluous==0
+            a(i,:)=[estimate_error,0,0,0]';
+        else
+            p=true_connection_identified/(true_connection_identified+ntruepruned);
+            q=true_connection_identified/(true_connection_identified+nsuperfluous);
+            r=2*(p*q)/(p+q);
+            a(i,:)=[estimate_error,p,q,r]';
+        end
+    end
+    R(j,:,:)=a;
+end
+B(:,1)=mean(R(:,:,1)',2);%%%每一行的均值
+B(:,2)=mean(R(:,:,2)',2);
+B(:,3)=mean(R(:,:,3)',2);
+B(:,4)=mean(R(:,:,4)',2);
+xlswrite('f4.xls', B);
+disp('finished');
+
+
+end
+
