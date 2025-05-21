@@ -85,7 +85,7 @@ for u = 1:length(samplesize)
     % Chạy thuật toán PC
     fprintf('Running PC algorithm for sample size %d\n', nsamples);
     tic;
-    [~, stru_PC] = PC_part(data, 1:size(data, 2), maxCset, @ChiSqCIT);
+    [~, stru_PC] = PC_part(data, 1:size(data, 2), maxCset, @my_g2_test);
     stru_PC = randori(stru_PC);
     time_PC = toc;
     fprintf('PC structure size: %s\n', mat2str(size(stru_PC)));
@@ -96,7 +96,7 @@ for u = 1:length(samplesize)
     % Chạy CPA+PC
     fprintf('Running CPA+PC algorithm for sample size %d\n', nsamples);
     tic;
-    [r_s, ~] = PC_part(data, 1:size(data, 2), 2, @ChiSqCIT);
+    [r_s, ~] = PC_part(data, 1:size(data, 2), 2, @my_g2_test);
     trs = toc;
     tic;
     cell_CPA{u} = [Plus_PC(Alg(1), data, stru_GT, r_s, maxCset), toc + trs];
