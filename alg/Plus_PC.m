@@ -5,8 +5,8 @@ for i = 1:length(Alg)
     PA = unique([nodeA,cut_set]); 
     PB = unique([nodeB,cut_set]);
     %--------------------------- Run PC ---------------------------
-    [~,struA] = PC_part(data,PA,maxCset,@my_g2_test);     %change here to ChiSqCIT / my_g2_test for Chi-squared/ G2 test with categorical data
-    [~,struB] = PC_part(data,PB,maxCset,@my_g2_test);     %change here to ChiSqCIT / my_g2_test for Chi-squared/ G2 test with categorical data
+    [~,struA] = PC_part(data,PA,maxCset,@ChiSqCIT);     %change here to ChiSqCIT / my_g2_test for Chi-squared/ G2 test with categorical data
+    [~,struB] = PC_part(data,PB,maxCset,@ChiSqCIT);     %change here to ChiSqCIT / my_g2_test for Chi-squared/ G2 test with categorical data
     %--------------------------- Merge ---------------------------
     for v = 1:size(skeleton,1)-1
         for w = v+1:size(skeleton,1)

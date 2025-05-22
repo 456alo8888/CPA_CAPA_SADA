@@ -76,31 +76,33 @@ for u = 1:length(samplesize)
     end
     
     % Chạy thuật toán
-    fprintf('Running algorithms for sample size %d\n', nsamples);
-    fprintf(fid, 'Running algorithms for sample size %d\n', nsamples);
+    %fprintf('Running algorithms for sample size %d\n', nsamples);
+    %fprintf(fid, 'Running algorithms for sample size %d\n', nsamples);
     % PC_part (rough skeleton)
     tic;
-    [r_s, ~] = PC_part(data, 1:size(data, 2), 2, @my_g2_test);
+    [r_s, ~] = PC_part(data, 1:size(data, 2), 2, @ChiSqCIT);
     time_PC_part = toc;
-    fprintf('PC_part completed in %.4f seconds\n', time_PC_part);
-    fprintf(fid, 'PC_part completed in %.4f seconds\n', time_PC_part);
-    
-    % CPA
-    fprintf('Running CPA algorithm\n');
-    fprintf(fid, 'Running CPA algorithm\n');
-    tic;
-    cell_CPA{u} = [Plus_PC(Alg{1}, data, stru_GT, r_s, maxCset), toc + time_PC_part];
-    time_CPA = toc;
-    fprintf('CPA completed in %.4f seconds (total: %.4f seconds)\n', time_CPA, time_CPA + time_PC_part);
-    fprintf(fid, 'CPA completed in %.4f seconds (total: %.4f seconds)\n', time_CPA, time_CPA + time_PC_part);
-    fprintf('  CPA: %s\n', mat2str(cell_CPA{u}));
-    fprintf(fid, '  CPA: %s\n', mat2str(cell_CPA{u}));
+    %fprintf('PC_part completed in %.4f seconds\n', time_PC_part);
+    %fprintf(fid, 'PC_part completed in %.4f seconds\n', time_PC_part);
+    % 
+    % % CPA
+    % fprintf('Running CPA algorithm\n');
+    % fprintf(fid, 'Running CPA algorithm\n');
+    % tic;
+    % disp('Type of Alg:'); disp(class(Alg));
+    % disp('Content of Alg:'); disp(Alg);
+    % cell_CPA{u} = [Plus_PC(Alg(1), data, stru_GT, r_s, maxCset), toc + time_PC_part];
+    % time_CPA = toc;
+    % fprintf('CPA completed in %.4f seconds (total: %.4f seconds)\n', time_CPA, time_CPA + time_PC_part);
+    % fprintf(fid, 'CPA completed in %.4f seconds (total: %.4f seconds)\n', time_CPA, time_CPA + time_PC_part);
+    % fprintf('  CPA: %s\n', mat2str(cell_CPA{u}));
+    % fprintf(fid, '  CPA: %s\n', mat2str(cell_CPA{u}));
     
     % SADA
     fprintf('Running SADA algorithm\n');
     fprintf(fid, 'Running SADA algorithm\n');
     tic;
-    cell_SADA{u} = [Plus_PC(Alg{2}, data, stru_GT, r_s, maxCset), toc + time_PC_part];
+    cell_SADA{u} = [Plus_PC(Alg(2), data, stru_GT, r_s, maxCset), toc + time_PC_part];
     time_SADA = toc;
     fprintf('SADA completed in %.4f seconds (total: %.4f seconds)\n', time_SADA, time_SADA + time_PC_part);
     fprintf(fid, 'SADA completed in %.4f seconds (total: %.4f seconds)\n', time_SADA, time_SADA + time_PC_part);
@@ -111,7 +113,7 @@ for u = 1:length(samplesize)
     fprintf('Running CAPA algorithm\n');
     fprintf(fid, 'Running CAPA algorithm\n');
     tic;
-    cell_CAPA{u} = [Plus_PC(Alg{3}, data, stru_GT, r_s, maxCset), toc + time_PC_part];
+    cell_CAPA{u} = [Plus_PC(Alg(3), data, stru_GT, r_s, maxCset), toc + time_PC_part];
     time_CAPA = toc;
     fprintf('CAPA completed in %.4f seconds (total: %.4f seconds)\n', time_CAPA, time_CAPA + time_PC_part);
     fprintf(fid, 'CAPA completed in %.4f seconds (total: %.4f seconds)\n', time_CAPA, time_CAPA + time_PC_part);

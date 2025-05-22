@@ -108,13 +108,13 @@ ind = true;
 xzInd=false(dx,dz);
 for i=1:dx
     for j=1:dz
-        xzInd(i,j) = ChiSqCIT(x(:,i), z(:, j), []);
+        xzInd(i,j) = PartialCorrelationCIT(x(:,i), z(:, j), [], alpha);
     end;
 end
 yzInd=false(dy,dz);
 for i=1:dy
     for j=1:dz
-        yzInd(i,j) = ChiSqCIT(y(:,i), z(:, j),[]);
+        yzInd(i,j) = PartialCorrelationCIT(y(:,i), z(:, j),[], alpha);
     end;
 end     
         
@@ -130,7 +130,7 @@ for i=1:dx
             if xyzind(k1)==false 
                 for k2=1:dz
                     if  k1~=k2
-                        xyzind(k2) = ChiSqCIT(x(:,i), z(:, k1), z(:, k2)) | ChiSqCIT(y(:,j),z(:, k1), z(:, k2));
+                        xyzind(k2) = PartialCorrelationCIT(x(:,i), z(:, k1), z(:, k2), alpha) | PartialCorrelationCIT(y(:,j),z(:, k1), z(:, k2), alpha);
                     end
                 end
             end
@@ -138,7 +138,7 @@ for i=1:dx
         zTmp=z(:, find(xyzind==false));
 
         if isempty(zTmp)
-            ind = ChiSqCIT(x(:,i), y(:,j), []);
+            ind = PartialCorrelationCIT(x(:,i), y(:,j), [], alpha);
             if ind ==false
                 return
             end;
@@ -149,7 +149,7 @@ for i=1:dx
             maxCITSize=min(size(zTmp,2),log2(n/10));
             for k=0:(2^maxCITSize-1)
                 B=dec2bin(k,dzTmp);
-                if true==ChiSqCIT(x(:,i), y(:,j), zTmp(:, find(B=='1')));
+                if true==PartialCorrelationCIT(x(:,i), y(:,j), zTmp(:, find(B=='1')), alpha);
                     ind=true;
                     break ;
                 end
@@ -161,25 +161,25 @@ for i=1:dx
     end
 end
 
-% function cit=PartialCorrelationCIT(x, y, Z, alpha)
-% %implement according to  http://en.wikipedia.org/wiki/Partial_correlation
-% if isempty(Z)
-%     n=length(x);
-%     ncit=0;
-%     pcc=corrcoef(x,y);
-%     pcc=pcc(1,2);
-% else
-%     [n,ncit]=size(Z);
-%     Z=[ones(n,1),Z];
-%     wx=Z\x;
-%     rx=x-Z*wx;
-%     wy=Z\y;
-%     ry=y-Z*wy;
-%     pcc=(n*rx'*ry- sum(rx)*sum(ry))/sqrt(n*rx'*rx-sum(rx)^2)/sqrt(n*ry'*ry-sum(ry)^2);
-% end
-% zpcc=0.5*log((1+pcc)/(1-pcc));
-% if sqrt(n-ncit-3)*abs(zpcc) > icdf('normal',1-alpha/2,0,1) 
-%     cit=false;
-% else
-%     cit=true;
-% end
+function cit=PartialCorrelationCIT(x, y, Z, alpha)
+%implement according to  http://en.wikipedia.org/wiki/Partial_correlation
+if isempty(Z)
+    n=length(x);
+    ncit=0;
+    pcc=corrcoef(x,y);
+    pcc=pcc(1,2);
+else
+    [n,ncit]=size(Z);
+    Z=[ones(n,1),Z];
+    wx=Z\x;
+    rx=x-Z*wx;
+    wy=Z\y;
+    ry=y-Z*wy;
+    pcc=(n*rx'*ry- sum(rx)*sum(ry))/sqrt(n*rx'*rx-sum(rx)^2)/sqrt(n*ry'*ry-sum(ry)^2);
+end
+zpcc=0.5*log((1+pcc)/(1-pcc));
+if sqrt(n-ncit-3)*abs(zpcc) > icdf('normal',1-alpha/2,0,1) 
+    cit=false;
+else
+    cit=true;
+end
