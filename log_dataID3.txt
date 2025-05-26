@@ -1,0 +1,18 @@
+===== Dataset: ER-gauss-1000-200-400/0 =====
+Reading ground truth from data/ER-gauss-1000-200-400/0/groundtruth.csv
+Ground truth matrix size: [200 200]
+
+--- Sample size: 1000 ---
+Data matrix size: [1000 200]
+Running PC algorithm...
+PC completed in 2839.91 seconds
+PC Result: [R, P, F, SHD, Time] = [0.2675 0.457264957264957 0.337539432176656 296 2825.2864508]
+Running CPA+PC algorithm...
+CPA+PC completed in 5319.06 seconds
+CPA+PC Result: [R, P, F, SHD, Time] = [0.2475 0.426724137931034 0.313291139240506 303 5319.063791]
+Running CAPA+PC algorithm...
+CAPA+PC completed in 3843.41 seconds
+CAPA+PC Result: [R, P, F, SHD, Time] = [0.27 0.469565217391304 0.342857142857143 294 3843.4137064]
+Running SADA+PC algorithm...
+SADA+PC completed in 2825.64 seconds
+SADA+PC Result: [R, P, F, SHD, Time] = [0.245 0.4375 0.314102564102564 305 2825.6351832]
